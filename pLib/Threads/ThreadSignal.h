@@ -13,7 +13,7 @@ public:
 public:
 	ThreadSignal();
 	~ThreadSignal();
-	void Initialize(const char* threadSignalName, ResetStyle resetStyle, bool initialState);
+	void Initialize(const MutexChar* threadSignalName, ResetStyle resetStyle, bool initialState);
 	void WaitForSignal(uint32 milliseconds = 0xFFFFFFFF);
 	void SetSignal();
 	void ClearSignal();

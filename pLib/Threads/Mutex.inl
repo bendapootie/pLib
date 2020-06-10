@@ -1,5 +1,5 @@
 
-inline Mutex::Mutex(const char* mutexId)
+inline Mutex::Mutex(const MutexChar* mutexId)
 {
 	m_mutexHandle = CreateMutex(nullptr, false, mutexId);
 	pLib::Assert(m_mutexHandle != nullptr);

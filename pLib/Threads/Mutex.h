@@ -1,11 +1,18 @@
 #pragma once
 
+
+#if defined UNICODE
+typedef wchar_t MutexChar;
+#else
+typedef char MutexChar;
+#endif
+
 // Mutex class for handling more complex locking needs than a CriticalSection can provide.
 // CriticalSections are much faster than Mutexes and should be preferred when appropriate.
 class Mutex
 {
 public:
-	Mutex(const char* mutexId);
+	Mutex(const MutexChar* mutexId);
 	~Mutex();
 	void Lock();
 	void Unlock();

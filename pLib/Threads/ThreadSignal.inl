@@ -12,7 +12,7 @@ inline ThreadSignal::~ThreadSignal()
 	}
 }
 
-inline void ThreadSignal::Initialize(const char* threadSignalName, ResetStyle resetStyle, bool initialState)
+inline void ThreadSignal::Initialize(const MutexChar* threadSignalName, ResetStyle resetStyle, bool initialState)
 {
 	pLib::Assert(m_signalHandle == nullptr, "Initialize should only be called on an empty object");
 	const bool manualReset = (resetStyle == ResetStyle::Manual);

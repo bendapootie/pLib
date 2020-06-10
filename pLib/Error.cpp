@@ -1,5 +1,7 @@
 #include "Precompiled.h"
+
 #include <tchar.h>	// For OutputDebugString
+#include <wchar.h>
 
 namespace pLib
 {
@@ -18,11 +20,11 @@ namespace pLib
 		ErrorHandlers.RemoveAt(lastIndex);
 	}
 
-	static void HandleError(ErrorLevel errorLevel, const char* message, va_list args)
+	static void HandleError(ErrorLevel errorLevel, const TCHAR* message, va_list args)
 	{
 		int nBuf;
 		static TCHAR szBuffer[1024];	// TODO: Get rid of hard coded size
-		nBuf = _vsnprintf_s(szBuffer, sizeof(szBuffer)-1, message, args);
+		nBuf = _vsnprintf_s(szBuffer, sizeof(szBuffer) - 1, message, args);
 
 		if (ErrorHandlers.Count() > 0)
 		{

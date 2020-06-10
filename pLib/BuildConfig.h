@@ -17,7 +17,7 @@ enum class BuildPlatform {
 	Win64
 };
 
-// We check for "Debug_BUILD" which allows projects to set
+// Check for "_DEBUG" or "Debug_BUILD" which allows projects to set
 // "$(ConfigurationName)_BUILD" in their Preprocessor Definitions.  That
 // allows the project to use the same string across all configurations instead
 // of relying on people to individually set a unique string per configuration.
@@ -36,7 +36,7 @@ const BuildConfiguration BUILD_CONFIGURATION = BuildConfiguration::Debug;
 #define RELEASE_BUILD	1
 const BuildConfiguration BUILD_CONFIGURATION = BuildConfiguration::Release;
 #else // unknown build configuration
-#error unknown build configuration; must be one of: Debug_BUILD, Release_BUILD
+#error unknown build configuration; expected to be one of: _DEBUG, NDEBUG, Debug_BUILD, or Release_BUILD
 #endif // build configuration
 
 //-----------------------------------------------------------------------------
