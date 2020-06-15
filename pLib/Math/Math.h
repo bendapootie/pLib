@@ -26,6 +26,7 @@ namespace Math
 	inline float ATan(float f) { return ::atanf(f); }
 	inline float ATan2(float y, float x) { return ::atan2f(y, x); }
 	inline void SinCos(float f, float& s, float& c) { s = Sin(f); c = Cos(f); }
+	inline float Sqr(float f) { return f * f; }
 	inline float Sqrt(float f) { return ::sqrtf(f); }
 	inline float InvSqrt(float f) { return 1.0f / ::sqrtf(f); }
 	inline float Power(float base, float exponent) { return ::powf(base, exponent); }
@@ -38,6 +39,7 @@ namespace Math
 	inline double ATan(double d) { return ::atan(d); }
 	inline double ATan2(double y, double x) { return ::atan2(y, x); }
 	inline void SinCos(double d, double& s, double& c) { s = Sin(d); c = Cos(d); }
+	inline double Sqr(double d) { return d * d; }
 	inline double Sqrt(double d) { return ::sqrt(d); }
 	inline double InvSqrt(double d) { return 1.0 / ::sqrt(d); }
 	inline double Power(double base, double exponent) { return ::pow(base, exponent); }
