@@ -14,8 +14,8 @@ public:
 	static const Vector2 UnitY;		// (0, 1)
 
 public:
-	float x;
-	float y;
+	float x = 0.0f;
+	float y = 0.0f;
 
 	// Default constructor doesn't do any initialization
 	Vector2() {}
@@ -71,9 +71,9 @@ public:
 	static const Vector3 UnitZ;		// (0, 0, 1)
 
 public:
-	float x;
-	float y;
-	float z;
+	float x = 0.0f;
+	float y = 0.0f;
+	float z = 0.0f;
 
 	// Default constructor doesn't do any initialization
 	Vector3() {}
@@ -138,10 +138,10 @@ public:
 	static const Vector4 UnitW;		// (0, 0, 0, 1)
 
 public:
-	float x;
-	float y;
-	float z;
-	float w;	// Note: 'w' comes after x,y,z
+	float x = 0.0f;
+	float y = 0.0f;
+	float z = 0.0f;
+	float w = 0.0f;	// Note: 'w' comes after x,y,z
 
 	// Default constructor doesn't do any initialization
 	Vector4() {}

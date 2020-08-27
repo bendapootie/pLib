@@ -10,8 +10,8 @@ public:
 	static const Point2 UnitY;		// (0, 1)
 
 public:
-	int x;
-	int y;
+	int x = 0;
+	int y = 0;
 
 	// Default constructor doesn't do any initialization
 	Point2() {}

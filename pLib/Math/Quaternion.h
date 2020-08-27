@@ -10,10 +10,10 @@ public:
 	static const Quaternion Identity;
 
 public:
-	float x;
-	float y;
-	float z;
-	float w;	// Note: 'w' comes after x,y,z, so the identity Quaternion is (0,0,0,1)
+	float x = 0.0f;
+	float y = 0.0f;
+	float z = 0.0f;
+	float w = 1.0f;	// Note: 'w' comes after x,y,z, so the identity Quaternion is (0,0,0,1)
 
 	// Default constructor doesn't do any initialization
 	Quaternion() {}

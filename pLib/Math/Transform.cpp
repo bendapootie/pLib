@@ -64,13 +64,13 @@ Matrix Transform::ToMatrix() const
 	// Get rotation matrix from quaternion
 	Matrix result = Rotation.GetMatrix();
 	// Apply scale
-	result._00 *= Scale.x;	result._01 *= Scale.y;	result._02 *= Scale.z;
-	result._10 *= Scale.x;	result._11 *= Scale.y;	result._12 *= Scale.z;
-	result._20 *= Scale.x;	result._21 *= Scale.y;	result._22 *= Scale.z;
+	result.a._00 *= Scale.x;	result.a._01 *= Scale.y;	result.a._02 *= Scale.z;
+	result.a._10 *= Scale.x;	result.a._11 *= Scale.y;	result.a._12 *= Scale.z;
+	result.a._20 *= Scale.x;	result.a._21 *= Scale.y;	result.a._22 *= Scale.z;
 	// Apply position
-	result._03 = Position.x;
-	result._13 = Position.y;
-	result._23 = Position.z;
+	result.a._03 = Position.x;
+	result.a._13 = Position.y;
+	result.a._23 = Position.z;
 
 	return result;
 }

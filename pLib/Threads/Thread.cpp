@@ -57,13 +57,13 @@ bool Thread::IsCurrentThread()
 void Thread::Suspend()
 {
 	DWORD oldSuspendCount = SuspendThread(m_threadHandle);
-	pLib::Assert(m_suspendCount == oldSuspendCount, "Make sure suspend counts match");
+	pLib::Assert(m_suspendCount == (int)oldSuspendCount, "Make sure suspend counts match");
 	m_suspendCount++;
 }
 
 void Thread::Resume()
 {
 	DWORD oldSuspendCount = ResumeThread(m_threadHandle);
-	pLib::Assert(m_suspendCount == oldSuspendCount, "Make sure suspend counts match");
+	pLib::Assert(m_suspendCount == (int)oldSuspendCount, "Make sure suspend counts match");
 	m_suspendCount--;
 }

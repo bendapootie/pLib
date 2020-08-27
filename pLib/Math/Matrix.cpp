@@ -35,31 +35,31 @@ Matrix Matrix::operator * (const Matrix& rhs) const
 {
 	// Todo: Do this faster.  Use intrinsics, vector operations, library functions, etc...
 	Matrix r;
-	r._00 = (_00 * rhs._00) + (_01 * rhs._10) + (_02 * rhs._20) + (_03 * rhs._30);
-	r._01 = (_00 * rhs._01) + (_01 * rhs._11) + (_02 * rhs._21) + (_03 * rhs._31);
-	r._02 = (_00 * rhs._02) + (_01 * rhs._12) + (_02 * rhs._22) + (_03 * rhs._32);
-	r._03 = (_00 * rhs._03) + (_01 * rhs._13) + (_02 * rhs._23) + (_03 * rhs._33);
-	r._10 = (_10 * rhs._00) + (_11 * rhs._10) + (_12 * rhs._20) + (_13 * rhs._30);
-	r._11 = (_10 * rhs._01) + (_11 * rhs._11) + (_12 * rhs._21) + (_13 * rhs._31);
-	r._12 = (_10 * rhs._02) + (_11 * rhs._12) + (_12 * rhs._22) + (_13 * rhs._32);
-	r._13 = (_10 * rhs._03) + (_11 * rhs._13) + (_12 * rhs._23) + (_13 * rhs._33);
-	r._20 = (_20 * rhs._00) + (_21 * rhs._10) + (_22 * rhs._20) + (_23 * rhs._30);
-	r._21 = (_20 * rhs._01) + (_21 * rhs._11) + (_22 * rhs._21) + (_23 * rhs._31);
-	r._22 = (_20 * rhs._02) + (_21 * rhs._12) + (_22 * rhs._22) + (_23 * rhs._32);
-	r._23 = (_20 * rhs._03) + (_21 * rhs._13) + (_22 * rhs._23) + (_23 * rhs._33);
-	r._30 = (_30 * rhs._00) + (_31 * rhs._10) + (_32 * rhs._20) + (_33 * rhs._30);
-	r._31 = (_30 * rhs._01) + (_31 * rhs._11) + (_32 * rhs._21) + (_33 * rhs._31);
-	r._32 = (_30 * rhs._02) + (_31 * rhs._12) + (_32 * rhs._22) + (_33 * rhs._32);
-	r._33 = (_30 * rhs._03) + (_31 * rhs._13) + (_32 * rhs._23) + (_33 * rhs._33);
+	r.a._00 = (a._00 * rhs.a._00) + (a._01 * rhs.a._10) + (a._02 * rhs.a._20) + (a._03 * rhs.a._30);
+	r.a._01 = (a._00 * rhs.a._01) + (a._01 * rhs.a._11) + (a._02 * rhs.a._21) + (a._03 * rhs.a._31);
+	r.a._02 = (a._00 * rhs.a._02) + (a._01 * rhs.a._12) + (a._02 * rhs.a._22) + (a._03 * rhs.a._32);
+	r.a._03 = (a._00 * rhs.a._03) + (a._01 * rhs.a._13) + (a._02 * rhs.a._23) + (a._03 * rhs.a._33);
+	r.a._10 = (a._10 * rhs.a._00) + (a._11 * rhs.a._10) + (a._12 * rhs.a._20) + (a._13 * rhs.a._30);
+	r.a._11 = (a._10 * rhs.a._01) + (a._11 * rhs.a._11) + (a._12 * rhs.a._21) + (a._13 * rhs.a._31);
+	r.a._12 = (a._10 * rhs.a._02) + (a._11 * rhs.a._12) + (a._12 * rhs.a._22) + (a._13 * rhs.a._32);
+	r.a._13 = (a._10 * rhs.a._03) + (a._11 * rhs.a._13) + (a._12 * rhs.a._23) + (a._13 * rhs.a._33);
+	r.a._20 = (a._20 * rhs.a._00) + (a._21 * rhs.a._10) + (a._22 * rhs.a._20) + (a._23 * rhs.a._30);
+	r.a._21 = (a._20 * rhs.a._01) + (a._21 * rhs.a._11) + (a._22 * rhs.a._21) + (a._23 * rhs.a._31);
+	r.a._22 = (a._20 * rhs.a._02) + (a._21 * rhs.a._12) + (a._22 * rhs.a._22) + (a._23 * rhs.a._32);
+	r.a._23 = (a._20 * rhs.a._03) + (a._21 * rhs.a._13) + (a._22 * rhs.a._23) + (a._23 * rhs.a._33);
+	r.a._30 = (a._30 * rhs.a._00) + (a._31 * rhs.a._10) + (a._32 * rhs.a._20) + (a._33 * rhs.a._30);
+	r.a._31 = (a._30 * rhs.a._01) + (a._31 * rhs.a._11) + (a._32 * rhs.a._21) + (a._33 * rhs.a._31);
+	r.a._32 = (a._30 * rhs.a._02) + (a._31 * rhs.a._12) + (a._32 * rhs.a._22) + (a._33 * rhs.a._32);
+	r.a._33 = (a._30 * rhs.a._03) + (a._31 * rhs.a._13) + (a._32 * rhs.a._23) + (a._33 * rhs.a._33);
 	return r;
 }
 
 Vector4 Matrix::operator * (const Vector4& vec) const
 {
 	Vector4 result;
-	result.x = (vec.x * _00) + (vec.y * _01) + (vec.z * _02) + (vec.w * _03);
-	result.y = (vec.x * _10) + (vec.y * _11) + (vec.z * _12) + (vec.w * _13);
-	result.z = (vec.x * _20) + (vec.y * _21) + (vec.z * _22) + (vec.w * _23);
-	result.w = (vec.x * _30) + (vec.y * _31) + (vec.z * _32) + (vec.w * _33);
+	result.x = (vec.x * a._00) + (vec.y * a._01) + (vec.z * a._02) + (vec.w * a._03);
+	result.y = (vec.x * a._10) + (vec.y * a._11) + (vec.z * a._12) + (vec.w * a._13);
+	result.z = (vec.x * a._20) + (vec.y * a._21) + (vec.z * a._22) + (vec.w * a._23);
+	result.w = (vec.x * a._30) + (vec.y * a._31) + (vec.z * a._32) + (vec.w * a._33);
 	return result;
 }

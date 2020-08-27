@@ -4,8 +4,8 @@ namespace Math
 {
 	inline float Abs(float f) { return ::fabsf(f); }
 	inline double Abs(double d) { return ::fabs(d); }
-	inline int8 Abs(int8 n) { return ::abs(n); }
-	inline int16 Abs(int16 n) { return ::abs(n); }
+	inline int8 Abs(int8 n) { return (int8)::abs(n); }
+	inline int16 Abs(int16 n) { return (int16)::abs(n); }
 	inline int32 Abs(int32 n) { return ::abs(n); }
 	inline int64 Abs(int64 n) { return (n >= 0) ? n : -n; }		// Compiler barks if int64 tries to call ::abs()
 

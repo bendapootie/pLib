@@ -97,24 +97,24 @@ Matrix Quaternion::GetMatrix() const
 	// Todo: For perf reasons, can we assume all quaternions are normalized?
 	// invs (inverse square length) is only required if quaternion is not already normalised
 	const float invs = 1.0f / (xx + yy + zz + ww);
-	m._00 = (xx - yy - zz + ww) * invs; // since ww + xx + yy + zz = 1 / invs * invs
-	m._11 = (-xx + yy - zz + ww) * invs;
-	m._22 = (-xx - yy + zz + ww) * invs;
+	m.a._00 = (xx - yy - zz + ww) * invs; // since ww + xx + yy + zz = 1 / invs * invs
+	m.a._11 = (-xx + yy - zz + ww) * invs;
+	m.a._22 = (-xx - yy + zz + ww) * invs;
 
 	const float xy = x * y;
 	const float zw = z * w;
-	m._10 = 2.0f * (xy + zw) * invs;
-	m._01 = 2.0f * (xy - zw) * invs;
+	m.a._10 = 2.0f * (xy + zw) * invs;
+	m.a._01 = 2.0f * (xy - zw) * invs;
 
 	const float xz = x * z;
 	const float yw = y * w;
-	m._20 = 2.0f * (xz - yw) * invs;
-	m._02 = 2.0f * (xz + yw) * invs;
+	m.a._20 = 2.0f * (xz - yw) * invs;
+	m.a._02 = 2.0f * (xz + yw) * invs;
 
 	const float yz = y * z;
 	const float xw = x * w;
-	m._21 = 2.0f * (yz + xw) * invs;
-	m._12 = 2.0f * (yz - xw) * invs;
+	m.a._21 = 2.0f * (yz + xw) * invs;
+	m.a._12 = 2.0f * (yz - xw) * invs;
 
 	return m;
 }
