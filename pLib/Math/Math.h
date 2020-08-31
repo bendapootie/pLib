@@ -15,6 +15,10 @@ namespace Math
 	template <class T> const T Clamp(const T& v, const T& a, const T& b) { return Max(a, Min(b, v)); }
 	template <class T> const T Lerp(const T& a, const T& b, const T& t) { return a + (t * (b - a)); }
 
+	inline float Ceil(float f) { return ::ceilf(f); }
+	inline float Floor(float f) { return ::floorf(f); }
+	inline float Round(float f) { return ::roundf(f); }
+
 	// Trig functions
 	inline float DegToRad(float degrees) { return degrees * (Pi / 180.0f); }
 	inline float RadToDeg(float radians) { return radians * (180.0f / Pi); }
