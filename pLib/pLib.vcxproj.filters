@@ -77,6 +77,12 @@
     <ClInclude Include="Containers\pMap.h">
       <Filter>Containers</Filter>
     </ClInclude>
+    <ClInclude Include="Containers\pStaticString.h">
+      <Filter>Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\Random.h">
+      <Filter>Util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Precompiled.cpp" />

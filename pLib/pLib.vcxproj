@@ -170,6 +170,7 @@
     <ClInclude Include="Containers\pMap.h" />
     <ClInclude Include="Containers\pStaticList.h" />
     <ClInclude Include="Containers\MTLinkedList.h" />
+    <ClInclude Include="Containers\pStaticString.h" />
     <ClInclude Include="Error.h" />
     <ClInclude Include="Event\EventBase.h" />
     <ClInclude Include="Event\EventListener.h" />
@@ -190,6 +191,7 @@
     <ClInclude Include="Threads\ThreadSignal.h" />
     <ClInclude Include="Types\Types.h" />
     <ClInclude Include="Util\PImpl.h" />
+    <ClInclude Include="Util\Random.h" />
     <ClInclude Include="Util\Timer.h" />
   </ItemGroup>
   <ItemGroup>

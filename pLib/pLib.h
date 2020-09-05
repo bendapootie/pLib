@@ -33,6 +33,7 @@
 //-----------------------------------------------------------------------------
 #include "Util\Timer.h"
 #include "Util\PImpl.h"
+#include "Util\Random.h"
 
 //-----------------------------------------------------------------------------
 // Threads
@@ -60,6 +61,7 @@
 #include "Containers\pArray.h"
 #include "Containers\pList.h"
 #include "Containers\pStaticList.h"
+#include "Containers\pStaticString.h"
 #include "Containers\MTLinkedList.h"
 #include "Containers\pCircularQueue.h"
 #include "Containers\pMap.h"
