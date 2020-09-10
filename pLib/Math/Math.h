@@ -18,6 +18,10 @@ namespace Math
 	inline float Ceil(float f) { return ::ceilf(f); }
 	inline float Floor(float f) { return ::floorf(f); }
 	inline float Round(float f) { return ::roundf(f); }
+	// Returns the fractional part of the float such that [Frac(f) + (int)f == f]
+	// Note: If input is negative, a negative fraction is returned
+	inline float Frac(float f) { return (f > 0.0f) ? (f - ::floorf(f)) : (f - ::ceilf(f)); }
+	inline float Sign(float f) { return static_cast<float>((0.0f < f) - (f < 0.0f)); }
 
 	// Trig functions
 	inline float DegToRad(float degrees) { return degrees * (Pi / 180.0f); }

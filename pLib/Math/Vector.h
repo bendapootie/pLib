@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Math.h"
+
 struct Vector2;
 struct Vector3;
 struct Vector4;
@@ -30,6 +32,11 @@ public:
 
 	bool operator == (const Vector2& other) const { return (x == other.x) && (y == other.y); }
 	bool operator != (const Vector2& other) const { return !(operator==(other)); }
+
+	bool Equals(const Vector2& other, const float tolerance = Math::FloatSmallNumber) const
+	{
+		return Math::Abs(x - other.x) <= tolerance && Math::Abs(y - other.y) <= tolerance;
+	}
 
 	float Dot(const Vector2& other) const { return (x * other.x) + (y * other.y); }
 
@@ -86,6 +93,11 @@ public:
 
 	bool operator == (const Vector3& other) const { return (x == other.x) && (y == other.y) && (z == other.z); }
 	bool operator != (const Vector3& other) const { return !(operator==(other)); }
+
+	bool Equals(const Vector3& other, const float tolerance = Math::FloatSmallNumber) const
+	{
+		return Math::Abs(x - other.x) <= tolerance && Math::Abs(y - other.y) <= tolerance && Math::Abs(z - other.z) <= tolerance;
+	}
 
 	float Dot(const Vector3& other) const { return (x * other.x) + (y * other.y) + (z * other.z); }
 	Vector3 Cross(const Vector3& other) const { return Vector3((y * other.z) - (other.y * z), (z * other.x) - (other.z * x), (x * other.y) - (other.x * y)); }
@@ -166,6 +178,11 @@ public:
 
 	bool operator == (const Vector4& other) const { return (x == other.x) && (y == other.y) && (z == other.z) && (w == other.w); }
 	bool operator != (const Vector4& other) const { return !(operator==(other)); }
+
+	bool Equals(const Vector4& other, const float tolerance = Math::FloatSmallNumber) const
+	{
+		return Math::Abs(x - other.x) <= tolerance && Math::Abs(y - other.y) <= tolerance && Math::Abs(z - other.z) <= tolerance && Math::Abs(w - other.w) <= tolerance;
+	}
 
 	float Dot(const Vector4& other) const { return (x * other.x) + (y * other.y) + (z * other.z) + (w * other.w); }
 

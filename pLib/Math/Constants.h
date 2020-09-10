@@ -29,6 +29,7 @@ namespace Math
 	const float FloatEpsilon = 1.192092896e-07F;	// smallest value such that (1.0 + FloatEpsilon) != 1.0
 	const float FloatMax = 3.402823466e+38F;		// max value
 	const float FloatMin = 1.175494351e-38F;		// min positive value
+	const float FloatSmallNumber = 0.000001f;		// "smallish" number, useful for epsilon tests
 
 	const double DoubleEpsilon = 2.2204460492503131e-016;	// smallest value such that (1.0 + DoubleEpsilon) != 1.0
 	const double DoubleMax = 1.7976931348623158e+308;		// max value
