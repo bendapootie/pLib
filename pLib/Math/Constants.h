@@ -5,8 +5,10 @@ namespace Math
 	static_assert(sizeof(float) == 4, "Assuming that float is 4 bytes");
 	static_assert(sizeof(double) == 8, "Assuming that double is 8 bytes");
 
-	const float Pi = 3.14159265358979f;
-	const float PiOver2 = 3.14159265358979f / 2.0f;
+	constexpr double Pi = 3.14159265358979323846264338327950;
+	constexpr double PiOver2 = Pi / 2.0;
+	constexpr float PiF = 3.14159265358979f;
+	constexpr float PiOver2F = PiF / 2.0f;
 
 	const int8 Int8Min = (-127) - 1;
 	const int8 Int8Max = 127;

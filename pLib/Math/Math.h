@@ -16,16 +16,48 @@ namespace Math
 	template <class T> const T Lerp(const T& a, const T& b, const T& t) { return a + (t * (b - a)); }
 
 	inline float Ceil(float f) { return ::ceilf(f); }
+	inline double Ceil(double d) { return ::ceil(d); }
 	inline float Floor(float f) { return ::floorf(f); }
+	inline double Floor(double d) { return ::floor(d); }
 	inline float Round(float f) { return ::roundf(f); }
+	inline double Round(double d) { return ::round(d); }
 	// Returns the fractional part of the float such that [Frac(f) + (int)f == f]
 	// Note: If input is negative, a negative fraction is returned
 	inline float Frac(float f) { return (f > 0.0f) ? (f - ::floorf(f)) : (f - ::ceilf(f)); }
+	inline double Frac(double d) { return (d > 0.0f) ? (d - ::floor(d)) : (d - ::ceil(d)); }
 	inline float Sign(float f) { return static_cast<float>((0.0f < f) - (f < 0.0f)); }
+	inline double Sign(double d) { return static_cast<double>((0.0 < d) - (d < 0.0)); }
+
+	// Normalizes a number to an arbitrary range, assuming the range wraps
+	// around when going below min or above max 
+	inline float Normalize(const float value, const float min, const float max)
+	{
+		const float width = max - min;
+		const float offsetValue = value - min;
+		return (offsetValue - (Floor(offsetValue / width) * width)) + min;
+	}
+	inline double Normalize(const double value, const double min, const double max)
+	{
+		const double width = max - min;
+		const double offsetValue = value - min;
+		return (offsetValue - (Floor(offsetValue / width) * width)) + min;
+	}
+
 
 	// Trig functions
-	inline float DegToRad(float degrees) { return degrees * (Pi / 180.0f); }
-	inline float RadToDeg(float radians) { return radians * (180.0f / Pi); }
+	// Returns equivalent degrees in range [-180.0f .. 180.0f]
+	inline float NormalizeDegrees(const float degrees) { return Normalize(degrees, -180.0f, 180.0f); }
+	inline float RotateTowardsDegrees(const float src_degrees, const float dst_degrees, const float max_rotation_degrees)
+	{
+		const float normalized_delta = NormalizeDegrees(dst_degrees - src_degrees);
+		if (Abs(max_rotation_degrees) < Abs(normalized_delta))
+		{
+			return src_degrees + Sign(normalized_delta) * max_rotation_degrees;
+		}
+		return dst_degrees;
+	}
+	inline float DegToRad(float degrees) { return degrees * (PiF / 180.0f); }
+	inline float RadToDeg(float radians) { return radians * (180.0f / PiF); }
 	inline float Sin(float f) { return ::sinf(f); }
 	inline float Cos(float f) { return ::cosf(f); }
 	inline float Tan(float f) { return ::tanf(f); }
@@ -38,7 +70,21 @@ namespace Math
 	inline float Sqrt(float f) { return ::sqrtf(f); }
 	inline float InvSqrt(float f) { return 1.0f / ::sqrtf(f); }
 	inline float Power(float base, float exponent) { return ::powf(base, exponent); }
+	inline float Mod(float numerator, float denominator) { return ::fmodf(numerator, denominator); }
 
+	// Returns equivalent degrees in range [-180.0 .. 180.0]
+	inline double NormalizeDegrees(const double degrees) { return Normalize(degrees, -180.0, 180.0); }
+	inline double RotateTowardsDegrees(const double src_degrees, const double dst_degrees, const double max_rotation_degrees)
+	{
+		const double normalized_delta = NormalizeDegrees(dst_degrees - src_degrees);
+		if (Abs(max_rotation_degrees) < Abs(normalized_delta))
+		{
+			return src_degrees + Sign(normalized_delta) * max_rotation_degrees;
+		}
+		return dst_degrees;
+	}
+	inline double DegToRad(double degrees) { return degrees * (Pi / 180.0); }
+	inline double RadToDeg(double radians) { return radians * (180.0 / Pi); }
 	inline double Sin(double d) { return ::sin(d); }
 	inline double Cos(double d) { return ::cos(d); }
 	inline double Tan(double d) { return ::tan(d); }
@@ -51,4 +97,5 @@ namespace Math
 	inline double Sqrt(double d) { return ::sqrt(d); }
 	inline double InvSqrt(double d) { return 1.0 / ::sqrt(d); }
 	inline double Power(double base, double exponent) { return ::pow(base, exponent); }
+	inline double Mod(double numerator, double denominator) { return ::fmod(numerator, denominator); }
 };
