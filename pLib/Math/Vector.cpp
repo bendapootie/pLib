@@ -35,6 +35,32 @@ Vector2 Vector2::GetNormalized() const
 	return (*this) * invLength;
 }
 
+void Vector2::SafeNormalizeInPlace()
+{
+	const float lenSquared = this->Dot(*this);
+	if (lenSquared > Math::FloatSmallNumber)
+	{
+		const float invLength = Math::InvSqrt(lenSquared);
+		(*this) *= invLength;
+	}
+	else
+	{
+		(*this) = Vector2::Zero;
+	}
+}
+
+Vector2 Vector2::GetSafeNormalized() const
+{
+	const float lenSquared = this->Dot(*this);
+	if (lenSquared > Math::FloatSmallNumber)
+	{
+		const float invLength = Math::InvSqrt(lenSquared);
+		return (*this) * invLength;
+	}
+	return Vector2::Zero;
+}
+
+
 float Vector2::GetLength() const
 {
 	return Math::Sqrt(this->Dot(*this));

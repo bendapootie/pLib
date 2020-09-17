@@ -47,6 +47,10 @@ public:
 	void NormalizeInPlace();
 	Vector2 GetNormalized() const;
 
+	// Versions of 'normalize' that return Zero if called on a zero length vector
+	void SafeNormalizeInPlace();
+	Vector2 GetSafeNormalized() const;
+
 	float GetLength() const;
 	float GetLengthSquared() const;
 
