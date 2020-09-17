@@ -17,7 +17,7 @@ public:
 	void Clear() { m_map.clear(); }
 
 	// Adds a key/value pair to the map
-	void Add(const KeyType& key, const ValueType& _value) { m_map.insert(key, _value); }
+	void Add(const KeyType& _key, const ValueType& _value) { m_map[_key] = _value; }
 
 	// Bracket operator for accessing map values via key
 	// Note: If the key does not exist, this will create an entry and return a default object

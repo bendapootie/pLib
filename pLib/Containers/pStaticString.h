@@ -60,6 +60,21 @@ public:
 		m_isTruncated = c_str[i] != m_array[i];
 	}
 
+	bool operator < (const pStaticString<MaxCapacity>& other) const
+	{
+		return strcmp(m_array, other.m_array) < 0;
+	}
+
+	bool operator > (const pStaticString<MaxCapacity>& other) const
+	{
+		return strcmp(m_array, other.m_array) > 0;
+	}
+
+	bool operator == (const pStaticString<MaxCapacity>& other) const
+	{
+		return strcmp(m_array, other.m_array) == 0;
+	}
+
 	const char* c_str() const { return m_array; }
 
 private:
