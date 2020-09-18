@@ -22,9 +22,9 @@ namespace pLib
 
 	static void HandleError(ErrorLevel errorLevel, const TCHAR* message, va_list args)
 	{
-		int nBuf;
-		static TCHAR szBuffer[1024];	// TODO: Get rid of hard coded size
-		nBuf = _vsnprintf_s(szBuffer, sizeof(szBuffer) - 1, message, args);
+		static TCHAR szBuffer[1024];	// TODO: Get rid of hard coded size (use snprintf to compute size?)
+		const int nBuf = _vsnprintf_s(szBuffer, sizeof(szBuffer), _TRUNCATE, message, args);
+		// if (nBuf < -1) the buffer wasn't big enough
 
 		if (ErrorHandlers.Count() > 0)
 		{
@@ -67,6 +67,14 @@ namespace pLib
 		va_list args;
 		va_start(args, message);
 		HandleError(ErrorLevel::Error, message, args);
+		va_end(args);
+	}
+
+	void Warning(const char* message, ...)
+	{
+		va_list args;
+		va_start(args, message);
+		HandleError(ErrorLevel::Warning, message, args);
 		va_end(args);
 	}
 

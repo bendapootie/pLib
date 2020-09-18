@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Math.h"
+#include "Point.h"
 
 struct Vector2;
 struct Vector3;
@@ -28,6 +29,7 @@ public:
 	const float* Ptr() const { return &x; }
 	float* Ptr() { return &x; }
 
+	Point2 ToPoint2() const { return Point2(static_cast<int>(x), static_cast<int>(y)); }
 	Vector3 ToVector3(float z = 0.0f);
 
 	bool operator == (const Vector2& other) const { return (x == other.x) && (y == other.y); }

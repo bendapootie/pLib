@@ -22,6 +22,7 @@ namespace pLib
 	void Assert(bool condition, const char* message = "", ...);
 	bool Verify(bool condition, const char* message = "", ...);
 	void Error(const char* message = "", ...);
+	void Warning(const char* message, ...);
 	void Debug(const char* message, ...);
 
 	typedef void(*ErrorHandler)(ErrorLevel errorLevel, const char* message);
