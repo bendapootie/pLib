@@ -72,7 +72,7 @@ public:
 
 	bool operator == (const pStaticString<MaxCapacity>& other) const
 	{
-		return strcmp(m_array, other.m_array) == 0;
+		return (m_length != other.m_length) ? false : (strcmp(m_array, other.m_array) == 0);
 	}
 
 	const char* c_str() const { return m_array; }
