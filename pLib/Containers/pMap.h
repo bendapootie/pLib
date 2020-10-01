@@ -24,12 +24,12 @@ public:
 	ValueType& operator[](const KeyType& _key) { return m_map[_key]; }
 
 	// Function for finding values without risk of creating a default value
-	bool TryGetValue(const KeyType& _key, __out const ValueType* _outValue) const
+	bool TryGetValue(const KeyType& _key, __out ValueType* _outValue) const
 	{
 		auto it = m_map.find(_key);
 		if (it != m_map.end())
 		{
-			_outValue = &it->second;
+			*_outValue = it->second;
 			return true;
 		}
 		return false;
