@@ -1,5 +1,6 @@
 #pragma once
 
+#include "pLib.h"
 // TODO: Remove all STL includes
 #include <map>
 
@@ -16,7 +17,11 @@ public:
 	// Removes all values from the map and sets its Count to 0
 	void Clear() { m_map.clear(); }
 
+	// Returns true if map has an entry for the given key
+	bool HasKey(const KeyType& _key) const { return m_map.find(_key) != m_map.end(); }
+
 	// Adds a key/value pair to the map
+	// If key already exists, sets the value associated with the key
 	void Add(const KeyType& _key, const ValueType& _value) { m_map[_key] = _value; }
 
 	// Bracket operator for accessing map values via key
@@ -33,6 +38,16 @@ public:
 			return true;
 		}
 		return false;
+	}
+
+	pList<KeyType> GetListOfKeys() const
+	{
+		pList<KeyType> keys;
+		for (auto it = m_map.begin(); it != m_map.end(); it++)
+		{
+			keys.Add(it->first);
+		}
+		return keys;
 	}
 
 	// Removes an element from the map by key
