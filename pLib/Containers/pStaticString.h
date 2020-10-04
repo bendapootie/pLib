@@ -77,8 +77,31 @@ public:
 
 	const char* c_str() const { return m_array; }
 
+	void Format(const char* text, ...);
+
 private:
 	int m_length = 0;
 	char m_array[MaxCapacity];
 	bool m_isTruncated = false;
 };
+
+
+template <int MaxCapacity>
+void pStaticString<MaxCapacity>::Format(const char* text, ...)
+{
+	va_list args;
+	va_start(args, text);
+	const int nBuf = vsnprintf_s(m_array, MaxCapacity, _TRUNCATE, text, args);
+	va_end(args);
+
+	if (nBuf < 0)
+	{
+		m_length = MaxCapacity - 1;	// Take into account null terminator
+		m_isTruncated = true;
+	}
+	else
+	{
+		m_length = nBuf;
+		m_isTruncated = false;
+	}
+}
