@@ -68,8 +68,16 @@ public:
 	void operator += (const Vector2& rhs);
 	Vector2 operator - (const Vector2& rhs) const;
 	void operator -= (const Vector2& rhs);
+	// Component-wise multiply
+	Vector2 operator * (const Vector2& rhs) const { return Vector2(x * rhs.x, y * rhs.y); }
+	void operator *= (const Vector2& rhs) { x *= rhs.x; y *= rhs.y; }
+	// Component-wise divide
+	Vector2 operator / (const Vector2& rhs) const { return Vector2(x / rhs.x, y / rhs.y); }
+	void operator /= (const Vector2& rhs) { x /= rhs.x; y /= rhs.y; }
+	// Scalar multiply
 	Vector2 operator * (const float scale) const { return Vector2(x * scale, y * scale); }
 	void operator *= (const float scale) { x *= scale; y *= scale; }
+	// Scalar divide
 	Vector2 operator / (const float scale) const { return Vector2(x / scale, y / scale); }
 	void operator /= (const float scale) { x /= scale; y /= scale; }
 };
@@ -137,9 +145,18 @@ public:
 	void operator += (const Vector3& rhs);
 	Vector3 operator - (const Vector3& rhs) const;
 	void operator -= (const Vector3& rhs);
+	// Component-wise multiply
+	Vector3 operator * (const Vector3& rhs) const { return Vector3(x * rhs.x, y * rhs.y, z * rhs.z); }
+	void operator *= (const Vector3& rhs) { x *= rhs.x; y *= rhs.y; z *= rhs.z; }
+	// Component-wise divide
+	Vector3 operator / (const Vector3& rhs) const { return Vector3(x / rhs.x, y / rhs.y, z / rhs.z); }
+	void operator /= (const Vector3& rhs) { x /= rhs.x; y /= rhs.y; z /= rhs.z; }
+	// Scalar Multiply
 	Vector3 operator * (const float scale) const { return Vector3(x * scale, y * scale, z * scale); }
-	Vector3 operator / (const float d) const { return Vector3(x / d, y / d, z / d); }
 	void operator *= (const float scale) { x *= scale; y *= scale; z *= scale; }
+	// Scalar Divide
+	Vector3 operator / (const float d) const { return Vector3(x / d, y / d, z / d); }
+	void operator /= (const float scale) { x /= scale; y /= scale; z /= scale; }
 
 	// Static utility functions
 	static Vector3 Lerp(const Vector3& start, const Vector3& end, const float t);
@@ -208,8 +225,16 @@ public:
 	void operator += (const Vector4 &rhs);
 	Vector4 operator - (const Vector4& rhs) const;
 	void operator -= (const Vector4 &rhs);
+	// Component-wise multiply
+	Vector4 operator * (const Vector4& rhs) const { return Vector4(x * rhs.x, y * rhs.y, z * rhs.z, w * rhs.w); }
+	void operator *= (const Vector4& rhs) { x *= rhs.x; y *= rhs.y; z *= rhs.z; w *= rhs.w; }
+	// Component-wise divide
+	Vector4 operator / (const Vector4& rhs) const { return Vector4(x / rhs.x, y / rhs.y, z / rhs.z, w / rhs.w); }
+	void operator /= (const Vector4& rhs) { x /= rhs.x; y /= rhs.y; z /= rhs.z; w /= rhs.w; }
+	// Scalar Multiply
 	Vector4 operator * (const float scale) const { return Vector4(x * scale, y * scale, z * scale, w * scale); }
 	void operator *= (const float scale) { x *= scale; y *= scale; z *= scale; w *= scale; }
+	// Scalar Divide
 	Vector4 operator / (const float scale) const { return Vector4(x / scale, y / scale, z / scale, w / scale); }
 	void operator /= (const float scale) { x /= scale; y /= scale; z /= scale; w /= scale; }
 };
