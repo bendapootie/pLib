@@ -48,7 +48,6 @@
 //-----------------------------------------------------------------------------
 #include "Math\Constants.h"
 #include "Math\Math.h"
-#include "Math\Point.h"
 #include "Math\Quaternion.h"
 #include "Math\Vector.h"
 #include "Math\Matrix.h"
