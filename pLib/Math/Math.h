@@ -2,6 +2,19 @@
 
 namespace Math
 {
+	// Returns whether x is a normal value: i.e., whether it is neither infinity, NaN, zero or subnormal.
+	inline bool IsNormal(float f) { return ::isnormal(f); }
+	inline bool IsNormal(double d) { return ::isnormal(d); }
+	// Returns whether x is a NaN(Not - A - Number) value.
+	inline bool IsNan(float f) { return ::isnan(f); }
+	inline bool IsNan(double d) { return ::isnan(d); }
+	// Returns whether x is an infinity value (either positive infinity or negative infinity).
+	inline bool IsInfinite(float f) { return ::isinf(f); }
+	inline bool IsInfinite(double d) { return ::isinf(d); }
+	// Returns whether x is a finite value. A finite value is any floating - point value that is neither infinite nor NaN(Not - A - Number).
+	inline bool IsFinite(float f) { return ::isfinite(f); }
+	inline bool IsFinite(double d) { return ::isfinite(d); }
+
 	inline float Abs(float f) { return ::fabsf(f); }
 	inline double Abs(double d) { return ::fabs(d); }
 	inline int8 Abs(int8 n) { return (int8)::abs(n); }

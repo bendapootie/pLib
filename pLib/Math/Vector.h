@@ -80,6 +80,13 @@ public:
 	// Scalar divide
 	Vector2 operator / (const float scale) const { return Vector2(x / scale, y / scale); }
 	void operator /= (const float scale) { x /= scale; y /= scale; }
+
+	// Returns true if any component is NaN
+	bool IsNan() const { return Math::IsNan(x) || Math::IsNan(y); }
+	// Returns true if any component is Infinite
+	bool IsInfinite() const { return Math::IsInfinite(x) || Math::IsInfinite(y); }
+	// Returns true if _all_ components are Finite
+	bool IsFinite() const { return Math::IsFinite(x) && Math::IsFinite(y); }
 };
 
 struct Vector3
@@ -157,6 +164,13 @@ public:
 	// Scalar Divide
 	Vector3 operator / (const float d) const { return Vector3(x / d, y / d, z / d); }
 	void operator /= (const float scale) { x /= scale; y /= scale; z /= scale; }
+
+	// Returns true if any component is NaN
+	bool IsNan() const { return Math::IsNan(x) || Math::IsNan(y) || Math::IsNan(z); }
+	// Returns true if any component is Infinite
+	bool IsInfinite() const { return Math::IsInfinite(x) || Math::IsInfinite(y) || Math::IsInfinite(z); }
+	// Returns true if _all_ components are Finite
+	bool IsFinite() const { return Math::IsFinite(x) && Math::IsFinite(y) && Math::IsFinite(z); }
 
 	// Static utility functions
 	static Vector3 Lerp(const Vector3& start, const Vector3& end, const float t);
@@ -237,6 +251,19 @@ public:
 	// Scalar Divide
 	Vector4 operator / (const float scale) const { return Vector4(x / scale, y / scale, z / scale, w / scale); }
 	void operator /= (const float scale) { x /= scale; y /= scale; z /= scale; w /= scale; }
+
+	// Returns true if any component is NaN
+	bool IsNan() const {
+		return Math::IsNan(x) || Math::IsNan(y) || Math::IsNan(z) || Math::IsNan(w);
+	}
+	// Returns true if any component is Infinite
+	bool IsInfinite() const {
+		return Math::IsInfinite(x) || Math::IsInfinite(y) || Math::IsInfinite(z) || Math::IsInfinite(w);
+	}
+	// Returns true if _all_ components are Finite
+	bool IsFinite() const {
+		return Math::IsFinite(x) && Math::IsFinite(y) && Math::IsFinite(z) && Math::IsFinite(w);
+	}
 };
 
 
