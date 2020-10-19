@@ -26,7 +26,8 @@ namespace Math
 	template <class T> const T& Max (const T& a, const T& b) { return !(a < b) ? a : b; }
 
 	template <class T> const T Clamp(const T& v, const T& a, const T& b) { return Max(a, Min(b, v)); }
-	template <class T> const T Lerp(const T& a, const T& b, const T& t) { return a + (t * (b - a)); }
+	template <class T> const T Lerp(const T& a, const T& b, const T& t) { return a + ((b - a) * t); }
+	template <class T> const T LerpF(const T& a, const T& b, const float t) { return a + ((b - a) * t); }
 
 	inline float Ceil(float f) { return ::ceilf(f); }
 	inline double Ceil(double d) { return ::ceil(d); }
