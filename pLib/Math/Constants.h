@@ -6,8 +6,10 @@ namespace Math
 	static_assert(sizeof(double) == 8, "Assuming that double is 8 bytes");
 
 	constexpr double Pi = 3.14159265358979323846264338327950;
+	constexpr double TwoPi = Pi * 2.0;
 	constexpr double PiOver2 = Pi / 2.0;
 	constexpr float PiF = 3.14159265358979f;
+	constexpr float TwoPiF = PiF * 2.0f;
 	constexpr float PiOver2F = PiF / 2.0f;
 
 	constexpr int8 Int8Min = (-127) - 1;

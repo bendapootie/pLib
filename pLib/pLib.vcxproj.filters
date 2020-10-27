@@ -80,6 +80,9 @@
     <ClInclude Include="Util\Random.h">
       <Filter>Util</Filter>
     </ClInclude>
+    <ClInclude Include="Math\Color.h">
+      <Filter>Math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Precompiled.cpp" />

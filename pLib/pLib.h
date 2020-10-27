@@ -52,6 +52,7 @@
 #include "Math\Vector.h"
 #include "Math\Matrix.h"
 #include "Math\Transform.h"
+#include "Math\Color.h"
 #include "Math\Util.h"
 
 //-----------------------------------------------------------------------------

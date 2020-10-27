@@ -175,6 +175,7 @@
     <ClInclude Include="Event\EventBase.h" />
     <ClInclude Include="Event\EventListener.h" />
     <ClInclude Include="Event\EventManager.h" />
+    <ClInclude Include="Math\Color.h" />
     <ClInclude Include="Math\Constants.h" />
     <ClInclude Include="Math\Math.h" />
     <ClInclude Include="Math\Matrix.h" />
