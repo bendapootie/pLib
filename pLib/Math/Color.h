@@ -26,7 +26,6 @@ public:
 };
 
 //=============================================================================
-
 // Represents a 32-bit RGBA color value
 struct Color32
 {
@@ -44,18 +43,19 @@ public:
 	Color32(const uint8 r, const uint8 g, const uint8 b, const uint8 a = 255) :
 		c_(r, g, b, a)
 	{}
-	Color32(const float r, const float g, const float b, const float a = 1.0f) :
-		c_(
-			static_cast<uint8>(Math::Round(Math::Clamp(r * 255.0f, 0.0f, 255.0f))),
-			static_cast<uint8>(Math::Round(Math::Clamp(g * 255.0f, 0.0f, 255.0f))),
-			static_cast<uint8>(Math::Round(Math::Clamp(b * 255.0f, 0.0f, 255.0f))),
-			static_cast<uint8>(Math::Round(Math::Clamp(a * 255.0f, 0.0f, 255.0f)))
-		)
+	Color32(const Vector4& vector_color) :
+		Color32(
+			static_cast<uint8>(Math::Round(Math::Clamp(vector_color.x * 255.0f, 0.0f, 255.0f))),
+			static_cast<uint8>(Math::Round(Math::Clamp(vector_color.y * 255.0f, 0.0f, 255.0f))),
+			static_cast<uint8>(Math::Round(Math::Clamp(vector_color.z * 255.0f, 0.0f, 255.0f))),
+			static_cast<uint8>(Math::Round(Math::Clamp(vector_color.w * 255.0f, 0.0f, 255.0f)))
+			)
 	{
 	}
-	Color32(const Vector4& vector_color) :
-		Color32(vector_color.x, vector_color.y, vector_color.z, vector_color.w)
+
+	static Color32 FromFloats(const float r, const float g, const float b, const float a = 1.0f)
 	{
+		return Color32(Vector4(r, g, b, a));
 	}
 
 	Vector4 ToVector4() const
