@@ -27,6 +27,16 @@ public:
 
 //=============================================================================
 // Represents a 32-bit RGBA color value
+// 
+// Conversions to/from float values are a little different from the standard multiply/divide by 255
+// Dividing by 255 is nice for mapping the minimum integer value to the minimum float value, but
+// it means that the float ranges covered by each color aren't all the same size.
+//
+// The following conversions map the integer values to the center of the float range
+// And the float ranges are all equal size
+//
+// int = Floor(float * 256.0f)
+// float = (int + 0.5f) / 256.0f
 struct Color32
 {
 public:
@@ -45,10 +55,10 @@ public:
 	{}
 	Color32(const Vector4& vector_color) :
 		Color32(
-			static_cast<uint8>(Math::Round(Math::Clamp(vector_color.x * 255.0f, 0.0f, 255.0f))),
-			static_cast<uint8>(Math::Round(Math::Clamp(vector_color.y * 255.0f, 0.0f, 255.0f))),
-			static_cast<uint8>(Math::Round(Math::Clamp(vector_color.z * 255.0f, 0.0f, 255.0f))),
-			static_cast<uint8>(Math::Round(Math::Clamp(vector_color.w * 255.0f, 0.0f, 255.0f)))
+			static_cast<uint8>(Math::Clamp(vector_color.x * 256.0f, 0.0f, 255.0f)),
+			static_cast<uint8>(Math::Clamp(vector_color.y * 256.0f, 0.0f, 255.0f)),
+			static_cast<uint8>(Math::Clamp(vector_color.z * 256.0f, 0.0f, 255.0f)),
+			static_cast<uint8>(Math::Clamp(vector_color.w * 256.0f, 0.0f, 255.0f))
 			)
 	{
 	}
@@ -60,12 +70,7 @@ public:
 
 	Vector4 ToVector4() const
 	{
-		// TODO: Consider using different conversion functions that rely on '256' instead of '255'
-		//       Issue #51 - https://github.com/bendapootie/GridGame/issues/51
-		//       Argument here - http://eastfarthing.com/blog/2015-12-19-color/
-		//       f32 = (uint8 + 0.5f) / 256.0f
-		//       uint8 = (uint8)(f32 * 256.0f)
-		return Vector4(c_.r_, c_.g_, c_.b_, c_.a_) * (1.0f / 255.0f);
+		return Vector4(c_.r_ + 0.5f, c_.g_ + 0.5f, c_.b_ + 0.5f, c_.a_ + 0.5f) * (1.0f / 256.0f);
 	}
 
 	uint32 ToUint32() const
