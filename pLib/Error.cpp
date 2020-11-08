@@ -22,9 +22,23 @@ namespace pLib
 
 	static void HandleError(ErrorLevel errorLevel, const TCHAR* message, va_list args)
 	{
-		static TCHAR szBuffer[1024];	// TODO: Get rid of hard coded size (use snprintf to compute size?)
+		// TODO: Get rid of hard coded size (use snprintf to compute size?)
+		constexpr int kStaticBufferSize = 1024;
+		static TCHAR szBuffer[kStaticBufferSize];
+		// Note: If (nBuf < 0) the buffer wasn't big enough
 		const int nBuf = _vsnprintf_s(szBuffer, sizeof(szBuffer), _TRUNCATE, message, args);
-		// if (nBuf < -1) the buffer wasn't big enough
+
+		// Code that automatically appends line breaks to messages
+		// TODO: Figure out if and when this behavior is appropriate
+		bool kAppendLineBreak = true;
+		if (kAppendLineBreak)
+		{
+			// Compute index to insert line break and null terminator
+			int i = (nBuf >= 0) ? nBuf : kStaticBufferSize;
+			i = Math::Min(i, kStaticBufferSize - 2);
+			szBuffer[i] = '\n';
+			szBuffer[i + 1] = '\0';
+		}
 
 		if (ErrorHandlers.Count() > 0)
 		{
