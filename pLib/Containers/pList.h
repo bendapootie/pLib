@@ -2,6 +2,8 @@
 
 // TODO: Remove all STL includes
 #include <vector>
+#include <algorithm>	// for std::sort
+#include <functional>	// for std::function
 
 template <class Type>
 class pList
@@ -75,6 +77,16 @@ public:
 		int index;
 		return FindIndex(search, index);
 	}
+	
+	void Sort()
+	{
+		std::sort(m_list.begin(), m_list.end());
+	}
+
+ 	void Sort(std::function<bool(const Type& a, const Type& b)> comparison)
+ 	{
+ 		std::sort(m_list.begin(), m_list.end(), comparison);
+ 	}
 
 	// TODO: Support for-each operator
 	// - Need iterator, const_iterator, and const/non-const versions of begin() and end()
