@@ -52,6 +52,9 @@ public:
 	// Versions of 'normalize' that return Zero if called on a zero length vector
 	void SafeNormalizeInPlace();
 	Vector2 GetSafeNormalized() const;
+	// Same as GetSafeNormalized, except the 'length' output parameter
+	// is set to thelength of the input vector. Useful for minimizing calculations
+	Vector2 GetSafeNormalized(__out float& length) const;
 
 	float GetLength() const;
 	float GetLengthSquared() const;

@@ -60,6 +60,17 @@ Vector2 Vector2::GetSafeNormalized() const
 	return Vector2::Zero;
 }
 
+Vector2 Vector2::GetSafeNormalized(__out float& length) const
+{
+	const float lenSquared = this->Dot(*this);
+	if (lenSquared > Math::FloatSmallNumber)
+	{
+		length = Math::Sqrt(lenSquared);
+		return (*this) * (1.0f / length);
+	}
+	length = 0.0f;
+	return Vector2::Zero;
+}
 
 float Vector2::GetLength() const
 {
