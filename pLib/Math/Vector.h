@@ -319,6 +319,8 @@ public:
 	void operator -= (const Point2& rhs) { x -= rhs.x; y -= rhs.y; }
 	Point2 operator * (const int scale) const { return Point2(x * scale, y * scale); }
 	void operator *= (const int scale) { x *= scale; y *= scale; }
+	Point2 operator / (const int divisor) const { return Point2(x / divisor, y / divisor); }
+	void operator /= (const int divisor) { x /= divisor; y /= divisor; }
 };
 
 
