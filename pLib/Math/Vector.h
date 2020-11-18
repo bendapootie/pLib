@@ -71,6 +71,8 @@ public:
 	void operator += (const Vector2& rhs);
 	Vector2 operator - (const Vector2& rhs) const;
 	void operator -= (const Vector2& rhs);
+	// Unary negation operator
+	Vector2 operator - () const;
 	// Component-wise multiply
 	Vector2 operator * (const Vector2& rhs) const { return Vector2(x * rhs.x, y * rhs.y); }
 	void operator *= (const Vector2& rhs) { x *= rhs.x; y *= rhs.y; }
