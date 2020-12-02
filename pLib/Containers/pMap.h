@@ -40,6 +40,23 @@ public:
 		return false;
 	}
 
+	// Returns pointer to value in map or null if key isn't found
+	// Note: This pointer is only valid until an add or remove is made to the map
+	const ValueType* FindPointerToValue(const KeyType& _key) const
+	{
+		auto it = m_map.find(_key);
+		if (it != m_map.end())
+		{
+			return &it->second;
+		}
+		return nullptr;
+	}
+
+	ValueType* FindPointerToValue(const KeyType& _key)
+	{
+		return const_cast<ValueType*>(const_cast<const pMap<KeyType, ValueType>*>(this)->FindPointerToValue(_key));
+	}
+
 	pList<KeyType> GetListOfKeys() const
 	{
 		pList<KeyType> keys;
