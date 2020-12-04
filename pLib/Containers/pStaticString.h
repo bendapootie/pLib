@@ -3,7 +3,7 @@
 
 // Wrapper for statically sized string.
 // Provides error checking in debug builds and has no additional memory cost.
-template <int MaxCapacity>
+template <int MaxCapacity, bool ErrorOnOverflow = true>
 class pStaticString
 {
 public:
@@ -58,6 +58,7 @@ public:
 		// null terminate string
 		m_array[i] = 0;
 		m_isTruncated = c_str[i] != m_array[i];
+		pLib::Assert((ErrorOnOverflow && m_isTruncated) == false, "pStaticString overflowed");
 	}
 
 	bool operator < (const pStaticString<MaxCapacity>& other) const
@@ -80,14 +81,16 @@ public:
 	void Format(const char* text, ...);
 
 private:
-	int m_length = 0;
+	// Putting the char array first so format strings can use this class directly
+	// TODO: Not sure that's good practice, but it works /shrug
 	char m_array[MaxCapacity];
+	int m_length = 0;
 	bool m_isTruncated = false;
 };
 
 
-template <int MaxCapacity>
-void pStaticString<MaxCapacity>::Format(const char* text, ...)
+template <int MaxCapacity, bool ErrorOnOverflow>
+void pStaticString<MaxCapacity, ErrorOnOverflow>::Format(const char* text, ...)
 {
 	va_list args;
 	va_start(args, text);
@@ -98,6 +101,7 @@ void pStaticString<MaxCapacity>::Format(const char* text, ...)
 	{
 		m_length = MaxCapacity - 1;	// Take into account null terminator
 		m_isTruncated = true;
+		pLib::Assert(ErrorOnOverflow == false, "pStaticString overflowed");
 	}
 	else
 	{
