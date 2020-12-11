@@ -76,6 +76,11 @@ public:
 		return (m_length != other.m_length) ? false : (strcmp(m_array, other.m_array) == 0);
 	}
 
+	bool operator != (const pStaticString<MaxCapacity>& other) const
+	{
+		return !(*this == other);
+	}
+
 	const char* c_str() const { return m_array; }
 
 	void Format(const char* text, ...);
