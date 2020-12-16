@@ -60,7 +60,7 @@ public:
 		m_isTruncated = c_str[i] != m_array[i];
 		pLib::Assert((ErrorOnOverflow && m_isTruncated) == false, "pStaticString overflowed");
 	}
-
+	
 	bool operator < (const pStaticString<MaxCapacity>& other) const
 	{
 		return strcmp(m_array, other.m_array) < 0;
