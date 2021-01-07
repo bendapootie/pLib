@@ -40,6 +40,10 @@ public:
 		}
 	}
 
+	// Allocates memory for at least 'newCount' entries
+	// Useful as an optimization when the final size of a list is known ahead of time
+	void Reserve(int newCount) { m_list.reserve(newCount); }
+
 	// Resizes the list.  If 'newSize' is larger than Count(), 'value' is copied into each of the new entries
 	void Resize(int newCount, const Type& value) { m_list.resize(newCount, value); }
 
