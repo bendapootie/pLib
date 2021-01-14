@@ -15,6 +15,7 @@ public:
 	Random() {}
 	Random(uint64 seed) : seed_(seed) {}
 
+	// Returns a random integer in the range [0 .. 32767]
 	int32 Next()
 	{
 		// Take the seed and return a value between 0 and 32767
@@ -22,17 +23,20 @@ public:
 		return (seed_ >> 32) & 0x7fffffff;
 	}
 
+	// Returns a random integer in the range [0 .. max_value]
 	int32 Next(const int max_value)
 	{
 		// TODO: See if there's a better way to return a more even distribution
 		return Next() % max_value;
 	}
 
+	// Returns a random integer in the range [min_value .. max_value]
 	int32 Next(const int min_value, const int max_value)
 	{
 		return min_value + Next(max_value - min_value);
 	}
 
+	// Returns random value in the range [0.0 .. 1.0]
 	float NextF()
 	{
 		return static_cast<float>(Next()) / static_cast<float>(kMaxValue);
