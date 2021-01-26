@@ -9,6 +9,34 @@ template <class Type>
 class pList
 {
 public:
+	// Iterator class
+	class It {
+	public:
+		It() {}
+		It(Type* p) : p_(p) {}
+		void operator ++() { ++p_; }
+		Type& operator *() const { return *p_; }
+		bool operator ==(const It& other) const { return p_ == other.p_; }
+		bool operator !=(const It& other) const { return p_ != other.p_; }
+	public:
+		Type* p_ = nullptr;
+	};
+
+	// Const Iterator
+	class CIt {
+	public:
+		CIt() {}
+		CIt(const Type* p) : p_(p) {}
+		void operator ++() { ++p_; }
+		const Type& operator *() const { return *p_; }
+		bool operator ==(const CIt& other) const { return p_ == other.p_; }
+		bool operator !=(const CIt& other) const { return p_ != other.p_; }
+	public:
+		const Type* p_ = nullptr;
+	};
+
+
+public:
 	// Returns the maximum capacity of the list
 	int Capacity() const { return Math::Int32Max; }
 
@@ -91,9 +119,32 @@ public:
  	{
  		std::sort(m_list.begin(), m_list.end(), comparison);
  	}
+	
+	// These are here to support "foreach" syntax
+	// ie. for (auto i : list) {}
+	CIt begin() const
+	{
+		const Type* data = m_list.data();
+		return CIt(data);
+	}
 
-	// TODO: Support for-each operator
-	// - Need iterator, const_iterator, and const/non-const versions of begin() and end()
+	CIt end() const
+	{
+		const Type* data = m_list.data();
+		return CIt(data + Count());
+	}
+
+	It begin()
+	{
+		Type* data = m_list.data();
+		return It(data);
+	}
+
+	It end()
+	{
+		Type* data = m_list.data();
+		return It(data + Count());
+	}
 
 private:
 	// TODO: Make this not use std::vector
