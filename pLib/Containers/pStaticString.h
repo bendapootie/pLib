@@ -7,6 +7,9 @@ template <int MaxCapacity, bool ErrorOnOverflow = true>
 class pStaticString
 {
 public:
+	static constexpr int GetMaxCapacity() { return MaxCapacity; }
+
+public:
 	// c'tor to create empty string
 	pStaticString()
 	{
