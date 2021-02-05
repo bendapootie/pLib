@@ -33,9 +33,10 @@ namespace Math
 	constexpr float FloatEpsilon = 1.192092896e-07F;	// smallest value such that (1.0 + FloatEpsilon) != 1.0
 	constexpr float FloatMax = 3.402823466e+38F;		// max value
 	constexpr float FloatMin = 1.175494351e-38F;		// min positive value
-	constexpr float FloatSmallNumber = 0.000001f;		// "smallish" number, useful for epsilon tests
+	constexpr float FloatSmallNumber = 1e-4f;			// "smallish" number, useful for epsilon tests
 
 	constexpr double DoubleEpsilon = 2.2204460492503131e-016;	// smallest value such that (1.0 + DoubleEpsilon) != 1.0
 	constexpr double DoubleMax = 1.7976931348623158e+308;		// max value
 	constexpr double DoubleMin = 2.2250738585072014e-308;		// min positive value
+	constexpr double DoubleSmallNumber = 1e-8;					// "smallish" number, useful for epsilon tests
 };

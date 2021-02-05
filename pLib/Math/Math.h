@@ -29,6 +29,15 @@ namespace Math
 	template <class T> const T Lerp(const T& a, const T& b, const T& t) { return a + ((b - a) * t); }
 	template <class T> const T LerpF(const T& a, const T& b, const float t) { return a + ((b - a) * t); }
 
+	inline bool Equals(const float& a, const float& b, const float tolerance = Math::FloatSmallNumber)
+	{
+		return Math::Abs(a - b) <= tolerance;
+	}
+	inline bool Equals(const double& a, const double& b, const double tolerance = Math::DoubleSmallNumber)
+	{
+		return Math::Abs(a - b) <= tolerance;
+	}
+
 	inline float Ceil(float f) { return ::ceilf(f); }
 	inline double Ceil(double d) { return ::ceil(d); }
 	inline float Floor(float f) { return ::floorf(f); }
