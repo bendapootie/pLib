@@ -1,5 +1,18 @@
 #pragma once
 
+// These "PLIB_xxxx_MACRO" #defines are here to allow optimization of inner loops in debug
+// builds. The macro expansions can sometimes be faster since they avoid extra function calls,
+// but they can also be slower if used incorrectly because the parameters get duplicated.
+// These should only be used when you're absolutely sure you'll need them.
+// TODO: Add tests to verify Macro and Function versions yield identical results
+#ifdef DEBUG_BUILD
+#define PLIB_CLAMP_MACRO(v, a, b) ((v) < (a) ? (a) : ((v) > (b) ? (b) : (v)))
+#define PLIB_LERP_MACRO(a, b, t) ((a) + (((b) - (a)) * (t)))
+#else // #ifdef DEBUG_BUILD
+#define PLIB_CLAMP_MACRO(v, a, b) Math::Clamp(v, a, b)
+#define PLIB_LERP_MACRO(a, b, t) Math::Lerp(a, b, t)
+#endif // #ifdef DEBUG_BUILD
+
 namespace Math
 {
 	// Returns whether x is a normal value: i.e., whether it is neither infinity, NaN, zero or subnormal.
@@ -22,12 +35,12 @@ namespace Math
 	inline int32 Abs(int32 n) { return ::abs(n); }
 	inline int64 Abs(int64 n) { return (n >= 0) ? n : -n; }		// Compiler barks if int64 tries to call ::abs()
 
-	template <class T> const T& Min (const T& a, const T& b) { return (a < b) ? a : b; }
-	template <class T> const T& Max (const T& a, const T& b) { return !(a < b) ? a : b; }
+	template <class T> inline const T& Min (const T& a, const T& b) { return (a < b) ? a : b; }
+	template <class T> inline const T& Max (const T& a, const T& b) { return !(a < b) ? a : b; }
 
-	template <class T> const T Clamp(const T& v, const T& a, const T& b) { return Max(a, Min(b, v)); }
-	template <class T> const T Lerp(const T& a, const T& b, const T& t) { return a + ((b - a) * t); }
-	template <class T> const T LerpF(const T& a, const T& b, const float t) { return a + ((b - a) * t); }
+	template <class T> inline const T Clamp(const T& v, const T& a, const T& b) { return Max(a, Min(b, v)); }
+	template <class T> inline const T Lerp(const T& a, const T& b, const T& t) { return a + ((b - a) * t); }
+	template <class T> inline const T LerpF(const T& a, const T& b, const float t) { return a + ((b - a) * t); }
 
 	inline bool Equals(const float& a, const float& b, const float tolerance = Math::FloatSmallNumber)
 	{
