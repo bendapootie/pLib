@@ -62,42 +62,42 @@ const BuildPlatform BUILD_PLATFORM = BuildPlatform::Win64;
 
 //-----------------------------------------------------------------------------
 // Returns the build configuration
-inline BuildConfiguration GetBuildConfiguration()
+inline constexpr BuildConfiguration GetBuildConfiguration()
 {
 	return BUILD_CONFIGURATION;
 }
 
 //-----------------------------------------------------------------------------
 // Returns true if this is a Debug build
-inline bool IsBuildDebug()
+inline constexpr bool IsBuildDebug()
 {
 	return GetBuildConfiguration() == BuildConfiguration::Debug;
 }
 
 //-----------------------------------------------------------------------------
 // Returns true if this is a Release build
-inline bool IsBuildRelease()
+inline constexpr bool IsBuildRelease()
 {
 	return GetBuildConfiguration() == BuildConfiguration::Release;
 }
 
 //-----------------------------------------------------------------------------
 // Returns the target platform
-inline BuildPlatform GetTargetPlatform()
+inline constexpr BuildPlatform GetTargetPlatform()
 {
 	return BUILD_PLATFORM;
 }
 
 //-----------------------------------------------------------------------------
 // Returns true if we're on Win32
-inline bool IsPlatformWin32()
+inline constexpr bool IsPlatformWin32()
 {
 	return GetTargetPlatform() == BuildPlatform::Win32;
 }
 
 //-----------------------------------------------------------------------------
 // Returns true if we're on Win64
-inline bool IsPlatformWin64()
+inline constexpr bool IsPlatformWin64()
 {
 	return GetTargetPlatform() == BuildPlatform::Win64;
 }
