@@ -7,6 +7,33 @@ template <class Type, int Size>
 class pArray
 {
 public:
+	// Iterator class
+	class It {
+	public:
+		It() {}
+		It(Type* p) : p_(p) {}
+		void operator ++() { ++p_; }
+		Type& operator *() const { return *p_; }
+		bool operator ==(const It& other) const { return p_ == other.p_; }
+		bool operator !=(const It& other) const { return p_ != other.p_; }
+	public:
+		Type* p_ = nullptr;
+	};
+
+	// Const Iterator
+	class CIt {
+	public:
+		CIt() {}
+		CIt(const Type* p) : p_(p) {}
+		void operator ++() { ++p_; }
+		const Type& operator *() const { return *p_; }
+		bool operator ==(const CIt& other) const { return p_ == other.p_; }
+		bool operator !=(const CIt& other) const { return p_ != other.p_; }
+	public:
+		const Type* p_ = nullptr;
+	};
+
+public:
 	// Returns the maximum capacity.  For arrays, this is always the same as Count.
 	int Capacity() const { return Size; }
 
@@ -34,6 +61,28 @@ public:
 
 	const Type* Ptr() const { return m_array; }
 	Type* Ptr() { return m_array; }
+
+	// These are here to support "foreach" syntax
+	// ie. for (auto i : list) {}
+	CIt begin() const
+	{
+		return CIt(m_array);
+	}
+
+	CIt end() const
+	{
+		return CIt(m_array + Count());
+	}
+
+	It begin()
+	{
+		return It(m_array);
+	}
+
+	It end()
+	{
+		return It(m_array + Count());
+	}
 
 private:
 	Type m_array[Size];
