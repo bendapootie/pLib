@@ -89,7 +89,7 @@ public:
 	// Does a linear search through the list for the 'search' item.
 	// If found, returns 'true' and sets 'outIndex' to the index
 	// If not found, returns 'false' and leaves 'outIndex' undefined
-	bool FindIndex(const Type& search, int& outIndex)
+	bool FindIndex(const Type& search, int& outIndex) const
 	{
 		for (int i = 0; i < Count(); i++)
 		{
@@ -104,7 +104,7 @@ public:
 
 	// Does a linear search through the list for the 'search' item.
 	// If found, returns 'true'.  If not found, returns 'false'.
-	bool Contains(const Type& search)
+	bool Contains(const Type& search) const
 	{
 		int index;
 		return FindIndex(search, index);
